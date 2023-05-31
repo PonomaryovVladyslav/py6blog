@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+
 
 
 def username(request):
@@ -6,15 +8,15 @@ def username(request):
 
 
 def blogs(request):
-    return HttpResponse("here will be blogs")
+    return render(request, 'index.html')
 
 
 def about(request):
     return HttpResponse("here will be about")
 
 
-def oneblog(request, txt):
-    return HttpResponse(f"here will be oneblog, address {txt}")
+def oneblog(request):
+    return render(request, 'detailedBlog.html')
 
 
 def comment(request, txt):
@@ -22,7 +24,7 @@ def comment(request, txt):
 
 
 def create(request):
-    return HttpResponse("here will be create")
+    return render(request, 'createBlog.html')
 
 
 def update(request, txt):
@@ -32,3 +34,6 @@ def update(request, txt):
 def delete(request,txt):
     return HttpResponse(f"here will be delete, address {txt}")
 
+
+def index(request):
+    return render(request, 'index.html')

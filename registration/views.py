@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def username(request, username):
@@ -10,11 +11,11 @@ def change_password(request):
 
 
 def register(request):
-    return HttpResponse("here will be register")
+    return render(request, 'registration.html')
 
 
 def login(request):
-    return HttpResponse("here will be login")
+    return render(request, 'login.html')
 
 
 def logout(request):
