@@ -14,7 +14,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
-    fields = ('titleTopic', 'text', 'date_of_publicTopic', 'authors')
+    fields = ('title_topic', 'text_topic', 'date_of_public_topic', 'authors')
 
     def create_date(self, obj):
         return obj.created
@@ -24,7 +24,8 @@ class TopicAdmin(admin.ModelAdmin):
 
 @admin.register(Blogpost)
 class BlogpostAdmin(admin.ModelAdmin):
-    fields = ('titleBlogpost', 'text', 'date_of_publicBlogpost', 'author', 'topics')
+    fields = ('slug', 'title_blogpost', 'text_blogpost', 'date_of_public_blogpost', 'author_blogpost', 'topics')
+    prepopulated_fields = {"slug": ("title_blogpost",)}
 
     def create_date(self, obj):
         return obj.created
@@ -34,7 +35,7 @@ class BlogpostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    fields = ('text', 'date_of_publicComment', 'author', 'blogpost')
+    fields = ('text_comment', 'date_of_public_comment', 'author_comment', 'blogpost')
 
     def create_date(self, obj):
         return obj.created

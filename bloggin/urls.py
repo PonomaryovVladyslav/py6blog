@@ -1,12 +1,11 @@
 from django.urls import path
-from .views import blogs, about, oneblog, comment, create, update, delete, index
+from .views import blogs, about, get_blog, comment, create, update, delete, index
 urlpatterns = [
-    path('', index, name='index'),
-
-    path('blogs/', index, name='index'),
+    path('', blogs, name='blogs'),
+    path('blogs/', blogs, name='blogs'),
     # path('blogs/', blogs),
     path('about/', about),
-    path('oneblog/', oneblog, name='oneblog'),
+    path('get_blog/<slug:slug>/', get_blog, name='get_blog'),
     path('comment/<slug:txt>/', comment),
     path('create/', create, name='create'),
     path('update/<slug:txt>/', update),
