@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Our index file</title>
+    <title>Title</title>
 </head>
 <body>
     {% extends 'base.html' %}
-    {% block content %}
-    <h1>List of all blogposts</h1>
-    {% for one_topic in all_topics %}
-    <div style="color:red; text-align: center;"> Topic:   <b>{{one_topic}} </b></div>
-        {% for one_blog in blogposts %}
-            {% if one_topic ==  one_blog.topics.get %}
+    {% block content%}
+    <h1> {{topic}}</h1>
+
+    {% for one_blog in all_blogposts %}
+            {% if one_blog.topics.get ==  topic%}
                 <div>
                     <p> <b> {{one_blog.title_blogpost }} </b>
                     <a href="{% url 'get_blog' one_blog.slug %}"> ЧИТАТИ.{{one_blog.title}} </a>
@@ -21,8 +20,9 @@
                     </p>
                 </div>
             {% endif %}
-        {% endfor %}
     {% endfor %}
+
+
     {% endblock %}
 </body>
 </html>

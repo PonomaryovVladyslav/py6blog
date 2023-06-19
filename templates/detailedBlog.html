@@ -5,12 +5,35 @@
     <title>Title</title>
 </head>
 <body>
-        {% extends 'base.html' %}
-        {% block content%}
-            <h1>Detailed BLOG</h1>
-            <p>Detailed BLOG Detailed BLOG Detailed BLOG</p>
-        {% endblock %}
+    {% extends 'base.html' %}
+    {% block content %}
+    {{ views.get_blog}}
+   <div>
+       <h1>{{blogpost_one.title_blogpost}}</h1>
+       <p style="color:red;">Topic: {{topic}}  </p>
+       <p style="text-align:right;"> <i> <small> {{blogpost_one.date_of_public_blogpost}} </small> </i> </p>
+       <p> {{blogpost_one.text_blogpost}}  </p>
+        <p> <a href="{% url 'create_comment'  %}"
+           style="text-align:right; color:brown;">
+            <i><b>  Let us comment  </b> </i>  </a> </p>
+       <p style="text-align:center;" > <b> Автор: {{blogpost_one.author_blogpost.name}}  </b></p>
 
+
+   </div >
+
+
+        {% for comment in comments %}
+        <div style="background-color: #b3c6ff; border: 1px #0040ff solid; border-radius: 20px 5px">
+            <p><b>Comment # {{ forloop.counter }}</b></p>
+            <p style="text-align:right;" ><i><small>{{comment.date_of_public_comment}}</small></i></p>
+            <p>{{comment.text_comment}}</p>
+            <p style="text-align:center;" ><b>Автор: {{comment.author_comment.name}}</b></p>
+
+
+        </div>
+
+        {% endfor %}
+        {% endblock %}
 
 </body>
 </html>

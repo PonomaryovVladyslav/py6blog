@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our index file</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <h1>WE ARE SEARCHING {{searching_text}}</h1>
+    <h2 style="width: 250px; background-color: #99ccff; color: brown;
+                    border-radius: 20px 5px;"> titles of blogposts</h2>
+    {% for one_blog in blogposts_search %}
+            <div>
+                <p> <b> {{one_blog.title_blogpost }} </b>
+                <a href="{% url 'get_blog' one_blog.slug %}"> ЧИТАТИ.{{one_blog.title}} </a>
+                  Автор: {{one_blog.author_blogpost.name}}
+                </p>
+                <p> {{one_blog.text_blogpost|truncatechars:120}}
+                </p>
+            </div>
+        {% endfor %}
+    <h2 style="width: 250px; background-color: #99ccff; color: brown;
+                    border-radius: 20px 5px;"> texts from blogposts</h2>
+    {% for one_blog in blogposts_search_text %}
+            <div>
+                <p> <b> {{one_blog.title_blogpost }} </b>
+                <a href="{% url 'get_blog' one_blog.slug %}"> ЧИТАТИ.{{one_blog.title}} </a>
+                  Автор: {{one_blog.author_blogpost.name}}
+                </p>
+                <p> {{one_blog.text_blogpost|truncatechars:120}}
+                </p>
+            </div>
+        {% endfor %}
+
+    {% endblock %}
+</body>
+</html>

@@ -16,7 +16,7 @@
               list-style-type: none;
               border: 2px solid #0066FF;
               border-radius: 20px 5px;
-              width: 950px;
+              width: 1150px;
               text-align: center;
               background-color: #33ADFF;
         }
@@ -29,7 +29,7 @@
               width: 120px;
         }
 
-        #navbar form {
+         #navbar form {
               color: #fff;
               padding: 5px 10px;
               text-decoration: none;
@@ -41,6 +41,8 @@
               border-radius: 20px 5px;
               background-color: #0066FF;
         }
+
+
     </style>
 </head>
 <body>
@@ -48,16 +50,15 @@
         <div style="background-color: #0080ff">
 
             <ul id="navbar">
-                <li><a href="{% url 'index' %}"  >Main page</a></li>
+                <li><a href="{% url 'blogs' %}"  >Main page</a></li>
                 <li><a href="{% url 'create' %}" >Create blog</a></li>
-                <li><a href="{% url 'oneblog' %}" >The whole blog</a></li>
-                <li>
-                <form role="search">
-                <input type="search"  placeholder="Search..." aria-label="Search">
+                <li><a href="{% url 'topic_create' %}" >Create topic</a></li>
+                <li><a href="{% url 'by_topics' %}" >By topics</a></li>
+                <form style="width: 250px;">
+                    <input type="text" name="search">
+                    <button type="submit">Search</button>
                 </form>
-                 </li>
-                <li><a href = "{% url 'login' %}" >Login</a></li>
-                <li><a href = "{% url 'register' %}"  >Sign-up</a></li>
+                <li><a href = "{% url 'user_login' %}" >Login/out</a></li>
             </ul>
         </div>
     </header>
@@ -68,6 +69,7 @@
             {% block content%}{% endblock %}
 
         </div>
+            </div>
 
 
 </body>
