@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content%}
+    <h1><p>current user: {{request.user}}</p></h1>
+        <h3>LET US LOG</h3>
+        <form action="{% url 'user_login' %}" method="POST">
+            {% csrf_token  %}
+            {{ form.as_p }}
+            <button style="width: 250px; background-color: #99ccff; color: brown;
+                    border-radius: 20px 5px;" type='submit'>  Let us log! </button>
+        </form>
+
+    <h3>REGISTRATION </h3>
+    <h3 style="color: red"> Please, use the following form to log-in. If you don't have an account</h3>
+        <form action="{% url 'register' %}" method="POST">
+            {% csrf_token  %}
+            <button style="width: 250px; background-color: #99ccff; color: brown;
+                    border-radius: 20px 5px;" type='submit'>  Let us register! </button>
+        </form>
+
+
+         <p> you can log out </p>
+        <h3>LET US LOGOUT</h3>
+        <form action="{% url 'logout_view' %}" method="POST">
+            {% csrf_token  %}
+            <button style="width: 250px; background-color: #99ccff; color: brown;
+                    border-radius: 20px 5px;" type='submit'>  Let us logout! </button>
+        </form>
+
+
+    {% endblock %}
+</body>
+</html>
