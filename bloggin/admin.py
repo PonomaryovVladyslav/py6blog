@@ -14,10 +14,12 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
-    fields = ('title_topic', 'text_topic', 'date_of_public_topic', 'authors')
+    fields = ('slug', 'title_topic', 'text_topic', 'date_of_public_topic', 'authors')
+    prepopulated_fields = {"slug": ("title_topic",)}
 
     def create_date(self, obj):
         return obj.created
+
 
     create_date.empty_value_display = '???'
 
