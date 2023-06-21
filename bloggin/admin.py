@@ -4,7 +4,7 @@ from .models import Author, Blogpost, Comment, Topic
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    fields = ('name', 'date_of_registration')
+    fields = ('name', 'created_at')
 
     def create_date(self, obj):
         return obj.created
@@ -14,8 +14,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
-    fields = ('slug', 'title_topic', 'text_topic', 'date_of_public_topic', 'authors')
-    prepopulated_fields = {"slug": ("title_topic",)}
+    fields = ('slug', 'title', 'text')
 
     def create_date(self, obj):
         return obj.created
@@ -26,8 +25,8 @@ class TopicAdmin(admin.ModelAdmin):
 
 @admin.register(Blogpost)
 class BlogpostAdmin(admin.ModelAdmin):
-    fields = ('slug', 'title_blogpost', 'text_blogpost', 'date_of_public_blogpost', 'author_blogpost', 'topics')
-    prepopulated_fields = {"slug": ("title_blogpost",)}
+    fields = ('slug', 'title', 'text',  'topics')
+    prepopulated_fields = {"slug": ("title",)}
 
     def create_date(self, obj):
         return obj.created
@@ -37,7 +36,7 @@ class BlogpostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    fields = ('text_comment', 'date_of_public_comment', 'author_comment', 'blogpost')
+    fields = ('text_comment',  'blogpost')
 
     def create_date(self, obj):
         return obj.created

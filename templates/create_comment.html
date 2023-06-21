@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% extends 'base.html' %}
-    {% block content%}
-        <h1>Create COMMENT</h1>
-        <h2>This comment to blog {{one_blog}}</h2>
-        <form action="{% url 'create_comment' %}" method="POST">
-            {% csrf_token  %}
-            {{ form_comment.as_p }}
-            <button style="width: 250px; background-color: #99ccff; color: brown;
-                    border-radius: 20px 5px;" type='submit'>  Create comment </button>
-        </form>
-    {% endblock %}
-</body>
-</html>
+
+{% extends 'base.html' %}
+{% block content%}
+    <h1>Create COMMENT</h1>
+    <h2>This comment to blog {{one_blog}}</h2>
+    <form action="{% url 'create_comment' %}" method="POST">
+        {% csrf_token  %}
+        {{ form_comment.as_p }}
+        <button style="width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px;" type='submit'>  Create comment </button>
+    </form>
+{% endblock %}

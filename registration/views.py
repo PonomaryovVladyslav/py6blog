@@ -5,6 +5,7 @@ from .forms import AuthenticationForm
 from django.contrib.auth import login, logout
 
 
+
 def register(request):
     print('here')
     if request.method == 'POST':
@@ -13,7 +14,7 @@ def register(request):
             form.save()
             return redirect("/")
         return render(request, "registration.html", context={'form': form})
-    form = UserCreationForm(request.POST)
+    form = UserCreationForm()
     return render(request, "registration.html", context={'form': form})
 
 
@@ -40,7 +41,9 @@ def user_login(request):
     return render(request, 'login.html', {'form': form})
 
 
-
+def logout_view(request):
+    logout(request)
+    return redirect("user_login")
 
 
 
@@ -60,8 +63,6 @@ def change_password(request):
 #     return render(request, 'login.html')
 
 
-def logout_view(request):
-    logout(request)
-    return redirect("user_login")
+
 
 

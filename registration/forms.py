@@ -2,7 +2,6 @@ from django.contrib.auth import authenticate
 from django import forms
 
 
-
 class AuthenticationForm(forms.Form):
     username = forms.CharField(label="Username",max_length=254)
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
@@ -17,9 +16,3 @@ class AuthenticationForm(forms.Form):
                 raise forms.ValidationError(f'there is not {username} in my users')
 
 
-# class SignUpForm(UserCreationForm):
-#     email = forms.EmailField(max_length=254, help_text=u'Обязательно укажите действующий адрес эл. почты.', label=u'Эл. почта')
-#
-#     class Meta:
-#         model = MyUser
-#         fields = ('username', 'email', 'password1', 'password2', )

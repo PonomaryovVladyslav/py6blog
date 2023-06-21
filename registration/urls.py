@@ -6,6 +6,7 @@ urlpatterns = [
     path('change_password/', change_password),
     path('register/', register, name='register'),
     path('login/', user_login, name='user_login'),
-    path('logout_view/', logout_view, name='logout_view'),
+    # видалити
+    path('logout/', logout_view, name='logout_view'),
 ]
 

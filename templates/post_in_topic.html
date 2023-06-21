@@ -1,28 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% extends 'base.html' %}
-    {% block content%}
-    <h1> {{topic}}</h1>
 
-    {% for one_blog in all_blogposts %}
-            {% if one_blog.topics.get ==  topic%}
-                <div>
-                    <p> <b> {{one_blog.title_blogpost }} </b>
-                    <a href="{% url 'get_blog' one_blog.slug %}"> ЧИТАТИ.{{one_blog.title}} </a>
-                      Автор: {{one_blog.author_blogpost.name}}
-                    </p>
-                    <p> {{one_blog.text_blogpost|truncatechars:120}}
-                    </p>
-                </div>
-            {% endif %}
-    {% endfor %}
+{% extends 'base.html' %}
+{% block content%}
+<h1> {{topic}}</h1>
+
+{% for one_blog in all_blogposts %}
+
+            <div>
+                <p> <b> {{one_blog.title }} </b>
+                <a href="{% url 'get_blog' one_blog.slug %}"> READ.  </a>
+                  Автор: {{one_blog.author.name}}
+                </p>
+                <p> {{one_blog.text|truncatechars:120}}
+                </p>
+            </div>
+
+{% endfor %}
 
 
-    {% endblock %}
-</body>
-</html>
+{% endblock %}

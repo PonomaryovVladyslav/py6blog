@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% block content %}
+{{ views.get_blog}}
+<div>
+   <h1>{{blogpost_one.title}}</h1>
+    {%for el in topic%}
+        <p style="color:red;">Topic: {{el}}   </p>
+    {% endfor%}
+   <p style="text-align:right;"> <i> <small> Створено: {{blogpost_one.created_at}}.
+       Відредаговано: {{blogpost_one.updated_at}}   </small> </i> </p>
+   <p> {{blogpost_one.text}}  </p>
+    <p> <a href="{% url 'create_comment'  %}"
+       style="text-align:right; color:brown;">
+        <i><b>  Let us comment  </b> </i>  </a> </p>
+   <p style="text-align:center;" > <b> Автор: {{blogpost_one.author}}  </b></p>
+
+
+</div >
+
+
+{% for comment in comments %}
+<div style="background-color: #b3c6ff; border: 1px #0040ff solid; border-radius: 20px 5px">
+    <p><b>Comment # {{ forloop.counter }}</b></p>
+    <p style="text-align:right;" ><i><small> Створено: {{comment.created_at}}. Відредаговано: {{comment.updated_at}}  </small></i></p>
+    <p>{{comment.text}}</p>
+    <p style="text-align:center;" ><b>Автор: {{comment.author_comment.name}}</b></p>
+
+
+</div>
+
+        {% endfor %}
+        {% endblock %}
