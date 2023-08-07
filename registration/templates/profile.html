@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+{% block content%}
+<h1>List of all blogposts  of {{request.user}} </h1>
+    {% for blog in blogs %}
+        <p>
+            <b>{{ blog.title }} </b>
+            {% for topic in blog.topics.all %}
+               <u> Topic:</u> <span style="color: blue"> {{ topic }} </span>
+            {% endfor %}
+                <u> Author: </u> <span style="color: brown"> {{ blog.author }} </span>
+            <a href="{% url 'get_blog' blog.slug %}"> READ.  </a>
+        </p>
+    <p> <i> {{ blog.text|safe |truncatechars:250}} </i> </p>
+{% endfor %}
+
+<h1>List of all follows  of {{request.user}} </h1>
+    {% for follower in followers %}
+               <u> Topic:</u> <span style="color: blue"> {{ follower }} </span>
+
+{% endfor %}
+<h1>List of all likes  of {{request.user}} </h1>
+    {% for like in likes %}
+                <p>
+            <b>{{ like.title }} </b>
+                <u> Author: </u> <span style="color: brown"> {{ like.author }} </span>
+            <a href="{% url 'get_blog' like.slug %}"> READ.  </a>
+        </p>
+
+{% endfor %}
+<h1>List of all dislikes  of {{request.user}} </h1>
+    {% for dislike in dislikes %}
+                <p>
+            <b>{{ dislike.title }} </b>
+                <u> Author: </u> <span style="color: brown"> {{ dislike.author }} </span>
+            <a href="{% url 'get_blog' dislike.slug %}"> READ.  </a>
+        </p>
+
+{% endfor %}
+<h1>List of all comments  of {{request.user}} </h1>
+    {% for comment in comments %}
+<h5>{{comment.blogpost.title}}</h5>
+                <p> {{comment.text|safe}} </p>
+
+
+
+{% endfor %}
+
+{% endblock %}

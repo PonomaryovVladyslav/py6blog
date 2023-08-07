@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+{% block content%}
+    <h1>Create BLOG</h1>
+    <form action="{% url 'create' %}" method="POST">
+
+        {% csrf_token  %}
+        {{ form.as_p }}
+        <button style="width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px;" type='submit'>  Create a new blog </button>
+    </form>
+{% endblock %}
