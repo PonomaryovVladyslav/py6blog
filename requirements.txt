@@ -3,7 +3,6 @@ backports.zoneinfo==0.2.1
 Django==4.2.4
 django-tinymce==3.6.1
 djangorestframework==3.14.0
-psycopg2-binary==2.9.7
 pytz==2023.3
 sqlparse==0.4.4
 typing_extensions==4.7.1
