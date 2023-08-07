@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block content%}
+<h1> {{topic}}</h1>
+ <button style="width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px;" type='submit'>  <a href="{% url 'topic_edit' topic.pk %}"> Edit Topic </a>  </button>
+         <button style="width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px;" type='submit'> <a href="{% url 'topic_delete' topic.pk %}">
+             Delete Topic </a> </button>
+ {% for post in posts %}
+        <p>
+            <b>{{ post.title }} </b>
+
+            {% for topic in post.topics.all %}
+               <u> Topic:</u> <span style="color: blue"> {{ topic }} </span>
+            {% endfor %}
+                <u> Author: </u> <span style="color: brown"> {{ post.author }} </span>
+            <a href="{% url 'get_blog' post.slug %}"> READ.  </a>
+        </p>
+    <p> <i> {{ post.text|safe|truncatechars:250}} </i> </p>
+
+        {% endfor %}
+
+
+{% endblock %}

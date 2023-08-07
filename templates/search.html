@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1>WE ARE SEARCHING {{searching_text}}</h1>
+<h2 style="width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px;"> titles of blogposts</h2>
+{% for one_blog in blogposts_search %}
+        <div>
+            <p> <b> {{one_blog.title }} </b>
+            <a href="{% url 'get_blog' one_blog.slug %}"> READ.  </a>
+              Автор: {{one_blog.author}}
+            </p>
+            <p> {{one_blog.text|safe|truncatechars:120}}
+            </p>
+        </div>
+    {% endfor %}
+<h2 style="width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px;"> texts from blogposts</h2>
+{% for one_blog in blogposts_search_text %}
+        <div>
+            <p> <b> {{one_blog.title }} </b>
+            <a href="{% url 'get_blog' one_blog.slug %}"> READ.  </a>
+              Автор: {{one_blog.author}}
+            </p>
+            <p> {{one_blog.text|truncatechars:120}}
+            </p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

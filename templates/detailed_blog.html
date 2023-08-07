@@ -1,0 +1,89 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<script src="https://kit.fontawesome.com/1d71f92e0a.js" crossorigin="anonymous"></script>
+
+
+   <h1>{{blog.title}}</h1>
+    {%for el in topic%}
+        <p style="color:red;">Topic: {{el}}   </p>
+    {% endfor%}
+   <p style="text-align:right;"> <i> <small> Створено: {{blog.created_at}}.
+       Відредаговано: {{blog.updated_at}}   </small> </i> </p>
+
+    {{blog.text|safe}}
+   <p style="text-align:center;" > <b> Автор: {{blog.author}}  </b></p>
+
+      <button style="width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px;" type='submit'>  <a href="{% url 'post_edit' blog.pk %}">
+             Edit Blog Post </a>  </button>
+         <button style="width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px;" type='submit'> <a href="{% url 'post_delete' blog.pk %}">
+             Delete Blog Post </a> </button>
+            <div class="d-flex flex-row">
+                 <form method="POST" action="{% url 'like' blog.pk %}">
+                        {% csrf_token %}
+                        Like
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button style="background-color: transparent; border: none; box-shadow: none;"
+                                type="submit"><i class="far fa-thumbs-up"></i> <span>{{ blog.likes.all.count }}</span>
+                        </button>
+                 </form>
+
+                   <form method="POST" action="{% url 'dislike' blog.pk %}">
+                        {% csrf_token %}
+                        Dislike
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button style="background-color: transparent; border: none; box-shadow: none;"
+                                type="submit"><i class="far fa-thumbs-down"></i>
+                            <span>{{ blog.dislikes.all.count }}</span></button>
+                    </form>
+
+</div>
+
+<div style="background-color: #ffff99;">
+   {% if new_comment %}
+  <h2>Your comment has been added.</h2>
+{% else %}
+  <h2>Add a new comment</h2>
+  <form action="{% url 'create_comment' blog.slug  %}" method="post">
+       <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ]
+    });
+  </script>
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Add comment"></p>
+  </form>
+{% endif %}
+</div >
+
+{% with comments.count as total_comments %}
+  <h2>
+    {{ total_comments }} comment{{ total_comments|pluralize }}
+  </h2>
+{% endwith %}
+
+{% for comment in comments %}
+<div style="background-color: #b3c6ff; border: 1px #0040ff solid; border-radius: 20px 5px">
+    <p><b>Comment # {{ forloop.counter }}</b></p>
+    <p style="text-align:right;" ><i><small> Створено: {{comment.created_at}}.
+        Відредаговано: {{comment.updated_at}}  </small></i></p>
+    <p>{{comment.text|safe }}</p>
+    <p style="text-align:center;" ><b>Автор: {{comment.author}}</b></p>
+
+</div>
+
+{% endfor %}
+{% endblock %}

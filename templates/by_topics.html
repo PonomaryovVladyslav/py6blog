@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+{% block content%}
+
+<h1> Please choose the topic</h1>
+{% for topic in topics %}
+    {% csrf_token  %}
+   <p> <button style="width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px;" type='submit'>
+                <a href="{% url 'get_topic' topic.slug %}">
+                <b> {{topic}} </b> </a> </button></p>
+
+                <p>{{topic.text|safe }} Amount of followers: <b> {{topic.followers.all.count}}
+                    follower{{ topic.followers.all.count|pluralize}} </b> </p>
+
+
+                <form method="POST" action="{% url 'add_follower' topic.pk %}">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-success" type=submit>Follow</button>
+                </form>
+
+
+{% endfor %}
+{% endblock %}

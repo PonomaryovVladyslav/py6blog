@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+{% block content%}
+<h1>current user: {{request.user}}</h1>
+    <h3>LET US LOG</h3>
+    <form action="{% url 'user_login' %}" method="POST" >
+        {% csrf_token  %}
+        {{ form.as_p }}
+        <button style="width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px;" type='submit'>  Let us log! </button>
+    </form>
+
+<h3>CHANGE PASSWORD </h3>
+<h3 style="color: red"> Please, use the following form to log-in. If you don't have an account</h3>
+<div>
+
+        <button style=  "width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px; display: inline;"  >
+        <a href="{% url 'password_change' %}">   CHANGE! </a> </button>
+
+
+</div>
+
+
+
+<div>
+<h3>REGISTRATION </h3>
+<h3 style="color: red"> Please, use the following form to log-in. If you don't have an account</h3>
+    <button style=  "width: 250px; background-color: #99ccff; color: brown;
+                border-radius: 20px 5px; display: inline;"  >
+        <a href="{% url 'register' %}">   Let us register! </a> </button>
+
+</div>
+
+
+<div>
+<h3>LET US LOGOUT</h3>
+
+    <button style=  "width: 250px; background-color: #99ccff; color: brown;
+            border-radius: 20px 5px; " >
+    <a href="{% url 'logout' %}">  Let us logout! </a> </button>
+</div>
+
+{% endblock %}
