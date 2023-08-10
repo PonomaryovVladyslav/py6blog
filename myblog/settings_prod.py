@@ -1,7 +1,7 @@
 import os
 
 DEBUG = False
-ALLOWED_HOSTS = ['3.68.80.16']
+ALLOWED_HOSTS = ['a-level-test.com']
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
