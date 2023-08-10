@@ -1,7 +1,7 @@
 import os
 
 DEBUG = False
-ALLOWED_HOSTS = ['a-level-test.com']
+ALLOWED_HOSTS = ['a-level-django.com']
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
